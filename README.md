@@ -14,8 +14,7 @@ This document explains how to execute the `serial_observer.py` script for Wi-Fi 
 	-	_name_: log_file_name: The name of the file where the matched pattern output will be stored.
 	-	_level_ : The log level to match.
 	-	_pattern_: The regular expression pattern to be matched in the input stream
-	
-	```
+
 - __file_name__ :x: - ~~Required Paramters~~ It contains a list of commands that need to be sent through the specified port. This data will be transmitted over the port for execution or processing.
 	Sample of file_name.conf is below :blush:	:page_facing_up:
 	```
