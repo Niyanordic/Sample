@@ -21,19 +21,11 @@ file name in which you want to save.
 ## Sample data.conf file
 
 ```
-mac_addresses = [  
-        "b0:44:9c:04:99:0d",  
-        "b0:44:9c:04:98:c6",  
-        "b0:44:9c:04:96:73",  
-        "b0:44:9c:04:99:1c"  
-    ]  
-filters_collection = ["wlan.fc.type_subtype == 12",
-  "wlan.fc.type_subtype == 27",
-  "wlan.fc.type_subtype == 36", 
-  "tcp"]  
-INTERFACE = "\\Device\\NPF_{582A59C3-EBA4-4902-88BA-74D698AF38D6}"  
-  
-CAPTURE_FILE_PREFIX = "sniffer_local_host" 
+[DEFAULT]  
+mac_addresses = b0:44:9c:04:99:0d, b0:44:9c:04:98:c6, b0:44:9c:04:96:73, b0:44:9c:04:99:1c  
+filters_collection = wlan.fc.type_subtype==12, wlan.fc.type_subtype==27, wlan.fc.type_subtype==36,tcp  
+INTERFACE = \\Device\\NPF_{582A59C3-EBA4-4902-88BA-74D698AF38D6}  
+CAPTURE_FILE_PREFIX = sniffer_local_host
 ```
 
 
