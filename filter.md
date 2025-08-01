@@ -5,7 +5,7 @@ This script runs `tshark` in parallel and analyzes the output at regular time in
 
 The required input parameters are specified in the `data.conf` file.
 
-## Sample : -> data.conf file
+## Sample : -> A sample data.conf file is shown below.
 
 ```
 [DEFAULT]  
