@@ -1,29 +1,29 @@
 #	filter.py
 ```
-Using this script we are running tshark parallely and analysis the output at regular interval of time.
+This script runs `tshark` in parallel and analyzes the output at regular time intervals.
 ```
 
-## data.conf
-This file will contain the required inputs.
-- __mac_addresses__  : List of mac address on which filter need to be applied.
--  __filters_collection__ : List of filter which you want to apply on each file.
-## interface
-The interface on which you want to run the Wireshark for capturing the packets.
+The required input parameters are specified in the `data.conf` file.
 
-
-## CAPTURE_FILE_PREFIX
-file name in which you want to save.
-
-
-## Sample data.conf file
+## Sample : -> data.conf file
 
 ```
 [DEFAULT]  
-mac_addresses = b0:44:9c:04:99:0d, b0:44:9c:04:98:c6, b0:44:9c:04:96:73, b0:44:9c:04:99:1c  
+dut_mac_addresses = b0:44:9c:04:99:0d, b0:44:9c:04:98:c6, b0:44:9c:04:96:73, b0:44:9c:04:99:1c  
 filters_collection = wlan.fc.type_subtype==12, wlan.fc.type_subtype==27, wlan.fc.type_subtype==36,tcp  
-INTERFACE = \\Device\\NPF_{582A59C3-EBA4-4902-88BA-74D698AF38D6}  
-CAPTURE_FILE_PREFIX = sniffer_local_host 
+interface =  \Device\NPF_{9482A529-D16E-4CDA-812C-B02F1211F788}  
+capture_file_prefix = sniffer_local_host  
+interval = 50
 ```
+
+## data.conf
+An overview of each input parameter is provided below.
+- __dut_mac_addresses__  : A comma-separated list of MAC addresses on which the filter should be applied.
+-  __filters_collection__ : A comma-separated list of filters to be applied to each `.pcap` file.
+ - __interface__ The network interface on which Wireshark will run to capture packets.
+- __capture_file_prefix__  The prefix to be used for naming the capture files.
+- __interval__ Specifies the duration (in seconds) for which Wireshark will run before saving each capture to a new file.
+
 
 
 ## How to run
@@ -32,40 +32,8 @@ python3 filter.py
 ```
 
 
+## Output 
 
-
-#	mcs_parsing.py
-This script is used for capturing   Data Rate   with retransmissions & without retransmissions for HE, HT, VHT, DSSS and Legacy.
-## Sample Data.conf file
-
-```
-[HE]  
-filter = radiotap.he.data_3.data_mcs <= 7 && wlan.fc.retry  
-mcs = radiotap.he.data_3.data_mcs  
-retry = wlan.fc.retry  
-  
-[HT]  
-filter = radiotap.mcs.index && wlan.fc.retry  
-mcs = radiotap.mcs.index  
-retry = wlan.fc.retry  
-  
-[VHT]  
-filter = wlan_radio.11ac.mcs && wlan.fc.retry  
-mcs = wlan_radio.11ac.mcs  
-retry = wlan.fc.retry  
-  
-[DSSS]  
-filter = wlan_radio.data_rate  
-mcs = wlan_radio.data_rate  
-retry = wlan.fc.retry  
-  
-[Legacy]  
-filter = wlan_radio.data_rate  
-mcs = wlan_radio.data_rate  
-retry = wlan.fc.retry
-```
-
-## How to run
-```
-python3 mcs_parsing.py
-```
+The output will be stored in a file.  
+For each `.pcap` file, two tables will be generated: one for control frames and another for data frames.
+Additionally, there will be two global tables—one for control frames and one for data frames—that will consolidate the corresponding tables from all `.pcap` files.
