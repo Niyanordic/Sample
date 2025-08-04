@@ -65,7 +65,7 @@ snaplen =
 preProcessing =0
 ```
 Note: ```interface, capture_file_prefix, interval, snaplen is not required in prePocessing is set to 0```
-## data.conf
+## Parameter Info.
 An overview of each input parameter is provided below.
 - __dut_mac_addresses__  : A comma-separated list of MAC addresses on which the filter should be applied.
  - __interface__ The network interface on which Wireshark will run to capture packets.
